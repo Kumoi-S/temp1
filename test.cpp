@@ -1,20 +1,25 @@
-#include "stdio.h"
+#include <iostream>
 
-int fun(int n)
+template <typename T>
+T (*pt)
+(int &);
+
+int add(int &x)
 {
-    static int sum = 1;
-    int i;
-    for (i = 1; i <= n; i++)
-    {
-        sum += i;
-    }
-    return sum;
+    return x + 1;
 }
 
-int main(int argc, char const *argv[])
+double subtract(int &x)
 {
-    int s = 0;
-    s = fun(1) + fun(2);
-    printf("%d", s);
+    return x - 1.0;
+}
+
+int main()
+{
+    int x = 5;
+    pt<int> = add;
+    std::cout << pt<int>(x) << std::endl; // 输出6
+    pt<double> = subtract;
+    std::cout << pt<int>(x) << std::endl;
     return 0;
 }
